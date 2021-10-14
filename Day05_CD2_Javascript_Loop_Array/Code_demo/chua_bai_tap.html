@@ -1,0 +1,82 @@
+<!-- chua_bai_tap.html -->
+<script type="text/javascript">
+	// Viết hàm thực hiện tính toán trên 2 số bất kỳ, phép tính có thể là cộng trừ nhân chia.
+// VD: với 2 số 6 và 2, nếu phép tính là cộng thì kết quả bằng 8, nếu phép tính là trừ thì kết quả = 4, nếu phép tính bằng nhân thì kết quả  = 12, nếu kết quả bằng chia thì kết quả = 3
+	// Khi xây dựng hàm cần xác định 2 ý chính sau:
+	// - Hàm có tham số nào ko? 3 tham số
+	// - Hàm trả về giá trị nào ? number
+	function cal(number1, number2, operator) {
+		var result = 0;
+		// number = 2, number2 = 5, operator = '+'
+
+		switch (operator) {
+			case '+':
+				result = number1 + number2;
+				break;
+			case '-':
+				result = number1 - number2;
+				break;
+			case '*':
+				result = number1 - number2;
+				break;
+			case '/':
+				result = number1 / number2;
+				break;			
+		}
+
+		//Return về giá trị số nào đó
+		return result;
+	}
+
+	var result1 = cal(2, 5, '+');
+	console.log(result1); //7
+
+
+	// Viết hàm kiểm tra số nguyên tố (số nguyên tố là số chỉ chia hết cho 1 và chính nó)
+	// - Hàm có tham số nào ko? 1 tham số
+	// - Hàm trả về giá trị/kiểu dữ liệu gì ? boolean
+	function isPrime(number) {
+		// Thuật toán nào để ktra số nguyên tố?
+		// Có các case sau:
+		// - Nếu số < 2, thì ko phải là số nguyên tố
+		// - Nếu  = 2, là số nguyên tố
+		// - Nên > 2, chạy 1 vòng lặp từ 2 đến chính số đó, nếu tại mỗi lần lặp mà phát hiện ra số đó chia hết cho biến lặp -> ko phải số nguyên tố
+		// Mặc định số truyền vào là số nguyên tố
+		// number = 5
+		var is_prime = true;
+
+		if (number < 2) {
+			// is_prime = false;
+			// return is_prime;
+			return false;
+		} 
+
+		if (number == 2) {
+			return true;
+		} 
+
+		// Mặc định nếu code chạy đến đây thì number > 2
+		// number = 125  -> chưa tối ưu vì check đc kết quả nhưng vẫn thực hiện hết vòng lặp
+		// Tối ưu thuật toán: code chạy nhanh và hiệu quả nhất
+		// căn bậc 2 của 125 ~ 11.1
+		
+		// 2 3 4 5 (6 7 8 9 10 11)
+		// -> 
+		// Chứng minh chỉ cần chạy từ 2 đến căn bậc của số đó là đủ để check số nguyên tố, chứ ko cần chạy đến số đó
+		for (var i = 2; i <= Math.sqrt(number); i++) {
+			if (number % i == 0) {
+				return false;
+				// break;
+			}
+		}
+
+		return is_prime;
+	}
+
+	// gọi hàm
+	console.log(isPrime(1)); //false
+	console.log(isPrime(2)); //true
+	console.log(isPrime(5)); //true
+	console.log(isPrime(9)); //false
+	console.log(isPrime(125)); //false
+</script>

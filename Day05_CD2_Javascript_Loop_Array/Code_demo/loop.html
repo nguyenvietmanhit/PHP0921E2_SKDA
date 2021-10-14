@@ -1,0 +1,68 @@
+<!-- loop.html -->
+<script type="text/javascript">
+	// Vòng lặp
+	// - Giúp lặp đi lặp lại 1 hành động nào đó
+	// + VD: log ra tab console 500 lần đoạn text: Hello 500ae
+	console.log('Hello 500ae');
+	console.log('Hello 500ae');
+	console.log('Hello 500ae');
+	console.log('Hello 500ae');
+	// ...
+	// -> chạy 1 vòng lặp, lặp 500 lần để thực hiện logic trên
+	// - Các vòng lặp cơ bản trong lập trình: for, while, do..while
+	// 1/ Vòng lặp for: xác định đc trước số lần lặp
+	// VD: Log console các số từ 1 đến 10
+	// - Cần chú ý điều kiện dừng vòng lặp, vì nếu ko bị vòng lặp vô hạn -> máy bị đơ
+	// - Ban đầu khởi tạo biến lặp = 1
+	// - Điều kiện lặp là i <= 10
+	// - Sau mỗi lần lặp, tăng giá trị của i lên 1
+	for (var i = 1; i <= 10; i++) {
+		// Logic bên trong vòng lặp
+		console.log(i);
+	}
+	//12345678910
+
+	// 2 / While: ko xác định trước số lần lặp
+	var j = 1;
+	while (j <= 10) {
+		// Logic bên trong while
+		console.log(j);
+		j++;
+	}
+	//12345678910
+
+	// 3 / do...while: chạy trước r mới kiểm tra điều kiện
+	do {
+		console.log('Code này có chạy ko?');
+	} while (1 > 10);
+	// Vẫn chạy đc lệnh trong do 1 lần mặc dù điều kiện sai ngay từ đầu
+
+	var k = 1;
+	do {
+		console.log(k);
+		k++;
+	} while (k <= 10);
+
+	// 4 / Điều khiển vòng lặp
+	// - Dùng để can thiệp vào luồng lặp hiện tại: break, continue
+	// - break: kết thúc vòng lặp: ko chạy code phía sau break và thoát khỏi vòng lặp , gặp ở switch case
+	for (var i = 1; i <= 10; i++) {
+		console.log(i);
+		if (i >= 5) {
+			break;
+		}
+	}
+	//12345
+	// - continue: bỏ qua lần lặp hiện tại -> ko chạy code phía sau continue, nhảy tới lần lặp kế tiếp
+	for (var j = 1; j <= 10; j++) {
+		if (j == 3 || j >= 5) {
+			continue;
+		}
+		console.log(j);
+	}
+	//124
+	// Nghỉ giải lao 20h10
+
+
+
+</script>
