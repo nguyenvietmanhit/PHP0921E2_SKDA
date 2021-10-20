@@ -1,0 +1,67 @@
+<script type="text/javascript">
+	// Lập trình hướng đối tượng OOP
+	// - 1 Object là thứ gì đó mà chúng ta có thể tương tác được, object có đặc điểm/thuộc tính và hành vi/phương thức
+	// - Objec là trái tim của OOP, ko chỉ với JS và còn của các ngôn ngữ khác như PHP, Java
+	// - Tư duy của OOP khác rất nhiều so với tư duy lập trình khác
+	// - VD: đối tượng sách thì sẽ có các thuộc tính tên, số trang, nhà xuất bản
+	// Có các phương thức: thêm, sửa, xóa, liệt kê:
+	// - Một số các khái niệm thường được sử dụng khi nói về OOP:
+	// + Đối tượng, thuộc tính, phương thức
+	// + Class
+	// + Tính đóng gói
+	// + Trừu tượng
+	// + Kế thừa
+	// + Đa hình
+	//
+
+	// + Đối tượng 
+	// - Tạo object bằng kiểu nguyên thủy: object literal, nhược điểm là khi tạo nhiều đối tượng phải copy paste
+	var book = {
+		title: "SGK",
+		author: "Nguyen Viet Manh",
+		year: "2018",
+		listBook: function() {
+			console.log('List book');
+		},
+		addBook: function(id) {
+			console.log('Add Book với id = ' + id);
+		},
+		editBook: function(id) {
+			console.log('Edit Book với id = ' + id);
+		},
+		deleteBook: function(id) {
+			console.log('Delet Book với id = ' + id);
+		},
+	};
+	// Truy cập thuộc tính/phương thức sử dụng ký tự .
+	console.log(book.title);
+	book.listBook();
+	book.editBook(5);
+	// Tạo object bằng hàm khởi tạo: object constructor, ưu điểm là có thể tạo nhiều đối tượng chung thuộc tính và phương thức -> có tính sử dụng lại
+	// Nếu dùng theo kiểu object literal sẽ như sau:
+	var book = {
+	   title: "Hippie",    
+	   author: "Paulo Coelho",  
+	   year: "2018"
+	}
+	var book1 = {
+	   title: "The Alchemist",    
+	   author: "Paulo Coelho",  
+	   year: "1988", 
+	}
+
+
+	// Cú pháp như 1 hàm bình thường, tuy nhiên bên trong sử dung từ khóa this sẽ làm cho hàm này như 1 class
+	function Book(title, author, year) {
+		this.title = title;
+		this.author = author;
+		this.year = year;
+	}
+
+	// Khởi tạo đối tượng 
+	var book1 = new Book('Title 1', 'Author1', 2021); // tạo ra 1 prototype mới là Book.prototype, là con của Object.prototype
+	console.log(book1);
+	var book2 = new Book('Title 2', 'Author2', 2022);
+	console.log(book2);
+
+</script>
