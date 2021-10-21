@@ -1,0 +1,26 @@
+<!-- luyen_thi.html -->
+<script type="text/javascript">
+	// LẤy dữ liệu số từ user, check  xem số là chẵn hay lẻ, hiển thị kết quả ra trình duyệt hoặc tab Console
+	// Sử dụng hàm prompt để tạo ra 1 ô nhập 
+	var number = prompt('Nhập số bất kỳ: ');
+
+	//var number2 = prompt('Nhập số thứ hai: ');
+	// alert(number);
+	// NẾu là số thì mới xử lý: isNaN - is not a number
+	if (isNaN(number) == false) {
+		if (number % 2 == 0) {
+			// console.log('Là số chẵn');
+			// Hiển thị text lên màn hình
+			document.write('Là số chẵn');
+		} else {
+			// console.log('Là số lẻ');
+			document.write('Là số lẻ');
+		}
+	}
+	// - Thời gian thi: tính từ khi giao đề đến 21h30
+	// - Tổng điểm: 100, pass >= 65
+	// - File nộp cần nén thành 1 file .rar duy nhất, file .rar này sẽ chứa tất cả các file .html bên trong, tên file: file_bai_tap_<tên bạn>.rar
+	// VD: file_bai_tap_manhnv.rar
+	// - Các bạn nộp bài xong có thể nghỉ 
+	// - Chúc các bạn làm bài tốt!
+</script>

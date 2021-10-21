@@ -1,0 +1,73 @@
+<!-- oop.html -->
+<script type="text/javascript">
+	// 1/ Một số thuật ngữ trong OOP
+	// + Object
+	// - Object là 1 thứ gì đó có thể tương tác đc
+	// - Object có thuộc tính và phương thức
+	// - Object là trái tim của lập trình hướng đối tượng - Object Oriented Programming - OOP
+	//  - Tạo object bằng Javascript:
+	// Tạo bằng kiểu nguyên thủy: object literal
+	var book = {
+		title: 'Toán học',
+		author: 'manhnv',
+		year: 2021,
+		listBook: function() {
+			console.log('Liệt kê sách');
+		},
+		addBook: function() {
+			console.log('Thêm sách');
+		},
+		updateBook: function (id) {
+			console.log('Sửa sách có id = ' + id);
+		},
+		deleteBook: function(id) {
+			console.log('Xóa sách có id = ' + id);
+		}
+	};
+	console.log(typeof book); //object
+	// Truy cập thuộc tính, phương thức của object trong JS: sử dụng ký tự . để truy cập
+	console.log(book.title); //Toán học
+	console.log(book.author); //manhnv
+	book.listBook(); // Liệt kê sách
+	book.deleteBook(5); //Xóa sách có id = 5
+
+	// Tạo object bằng hàm khởi tạo = class trong OOP
+	function Book(title, author, year) {
+		// Tạo 3 thuộc tính sử dụng this
+		this.title = title;
+		this.author = author;
+		this.year = year;
+
+		// Tạo 1 số phương thức: ko có từ khóa function - hàm trong hàm
+		listBook() {
+			console.log('Liệt kê sách')
+		}
+	}
+	// Khởi tạo các đối tượng từ hàm khởi tạo trên
+	var book1 = new Book('book1', 'author1', 2020);
+	console.log(typeof book1); //object
+	book1.listBook(); //Liệt kê sách
+	// Tạo obj từ class -> Javascript phiên bản ES6
+	class Student {
+		constructor(name) {
+			this.name = name;
+		}
+
+		addBook() {
+			console.log('add book');
+		}
+	}
+
+	var student = new Student('manhnv');
+	student.addBook(); //add book
+	// + Tính đóng gói trong OOP / Encapsulation
+	// Là sự che giấu thông tin đối với bên ngoài: private, protected, public (JS ko có 3 phạm vi truy cập)
+	// + Tính trừu tượng: Abstraction
+	// - Tạo 1 class với các phương thức ko có nội dung -> tạo khung -> bắt các class khác kế thừa từ nó phải đi triển khai cụ thể nội dung
+	// + Tính đa hình: 
+	// 1 phương thức có nhiều cách thực thi -> interface
+	// + Tính kế thừa: cho phép sử dụng lại thuộc tính/phương thức
+	// -> Javascript OOP ko rõ ràng, khó học
+
+
+</script>
