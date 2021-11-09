@@ -1,4 +1,4 @@
-/*style.css*/
+/*psd/css/style.css*/
 /*Nhúng font*/
 @font-face {
 	/*Tên font tự đặt*/
@@ -93,4 +93,36 @@ ul li a {
 
 .main-center .row {
 	margin: 0 -30px;
+}
+
+/*
+- Mặc định code phía trên là cho PC, bỏ qua @media(min-width: 1024px)
+- Responsive web cho Ipad và Mobile ->  thực tế hay coi giao diện Ipad và PC là 1
+-> giao diện hiển thị trên PC và Ipad là giống nhau
+-> tập trung responsive cho Mobile
+*/
+@media (max-width: 767px) {
+    /*- Responsive trên Mobile thế nào là ổn? Tùy thuộc vào con mắt thiết kế cũng như
+     yêu cầu từ KH*/
+     .menu {
+        display: none;
+     }
+
+     .logo {
+        text-align: center;
+        width: 100%;
+     }
+
+     .row {
+        /*Bỏ cơ chế mặc định của flex*/
+        flex-wrap: wrap;
+     }
+
+     .heading, .img-main {
+        width: 100%;
+     }
+
+     img {
+        max-width: 100%;
+     }
 }
