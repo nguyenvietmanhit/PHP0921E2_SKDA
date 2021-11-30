@@ -92,23 +92,54 @@ if (isset($_POST['submit'])) {
     <!-- Với các input cho phép chọn nhiều giá trị tại 1 thời điểm, thì name bắt buộc phải ở dạng mảng.
      Các input chọn nhiều: checkbox, select multiple, file multiple
      -->
-    <input type="checkbox" name="jobs[]" value="0"/> Dev
-    <input type="checkbox" name="jobs[]" value="1"/> Tester
-    <input type="checkbox" name="jobs[]" value="2"/> BA
-    <input type="checkbox" name="jobs[]" value="3"/> PM
+    <?php
+    $checked_dev = '';
+    $checked_tester = '';
+    $checked_ba = '';
+    $checked_pm = '';
+    if (isset($_POST['jobs'])) {
+        $jobs = $_POST['jobs'];
+        foreach ($jobs AS $job) {
+            switch ($job) {
+              case 0: $checked_dev = 'checked'; break;
+              case 1: $checked_tester = 'checked'; break;
+              case 2: $checked_ba = 'checked'; break;
+              case 3: $checked_pm = 'checked';
+            }
+        }
+    }
+    ?>
+    <input type="checkbox" name="jobs[]" <?php echo $checked_dev; ?> value="0"/> Dev
+    <input type="checkbox" name="jobs[]" <?php echo $checked_tester; ?> value="1"/> Tester
+    <input type="checkbox" name="jobs[]" <?php echo $checked_ba; ?> value="2"/> BA
+    <input type="checkbox" name="jobs[]" <?php echo $checked_pm; ?> value="3"/> PM
     <br/>
+    <?php
+    $selected_vn = '';
+    $selected_jp = '';
+    $selected_kr = '';
+    if (isset($_POST['country'])) {
+        $country = $_POST['country'];
+        switch ($country) {
+          case 0: $selected_vn = 'selected';break;
+          case 1: $selected_jp = 'selected';break;
+          case 2: $selected_kr = 'selected';
+        }
+    }
+    ?>
     Quốc gia:
     <select name="country">
-        <option value="0">VN</option>
-        <option value="1">JP</option>
-        <option value="2">KR</option>
+        <option value="0" <?php echo $selected_vn; ?> >VN</option>
+        <option value="1" <?php echo $selected_jp; ?> >JP</option>
+        <option value="2" <?php echo $selected_kr; ?> >KR</option>
     </select>
     <br/>
     Nhập email:
-    <input type="text" name="email" value=""/>
+    <input type="text" name="email"
+           value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>"/>
     <br/>
     Ghi chú:
-    <textarea name="note"></textarea>
+    <textarea name="note"><?php echo isset($_POST['note']) ? $_POST['note'] : ''; ?></textarea>
     <br/>
     <input type="submit" name="submit" value="Show"/>
 </form>
