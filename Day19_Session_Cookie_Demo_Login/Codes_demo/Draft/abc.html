@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bài số 1</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <h2>Thực hành toán tử số học</h2>
+    <h4 id="error" style="color: red;"></h4>
+    <h4 id="result" style="color: red;"></h4>
+    <div class="header">
+    	Nhập vào số a:
+    	<input type="text" name="" id="a-soa">
+    </div>
+    <div class="number">
+    	Nhập vào số b:
+    	<input type="text" name="" id="b-sob">
+    </div>
+    <br>
+	<button type="button" class="btn btn-primary" id="add">a + b</button>
+	<button type="button" class="btn btn-success" id="sub">a - b</button>
+	<button type="button" class="btn btn-danger" id="axb">a * b</button>
+	<button type="button" class="btn btn-warning" id="a/b">a / b</button>
+	<button type="button" class="btn btn-info" id="ab">a % b</button>
+    <button type="button" class="btn btn-success" id="ac">a++</button>
+    <br><br>
+    <button type="button" class="btn btn-primary" id="++a">++a</button>
+    <button type="button" class="btn btn-danger" id="a--">a--</button>
+    <button type="button" class="btn btn-warning" id="--a">--a</button>
+    <br><br>
+    <button type="button" class="btn btn-warning" id="reset">Reset dữ liệu</button>
+   
+    <script type="text/javascript">
+    	var obj_add = document.querySelector('#add');
+        obj_add.addEventListener('click', function(){
+            var error = '';
+            var result = '';
+            var obj_a = document.querySelector('#a-soa');
+            var a = obj_a.value;
+            var obj_b = document.querySelector('#b-sob');
+            var b = obj_b.value;
+            if (a == '' || b == '' ){
+                error = 'Không được để trống dữ liệu'
+            }
+            else if (isNaN(a) == true || isNaN(b) == true){
+                error = 'Cần nhập dữ liệu là số'
+            }
+            if (error == ''){
+                console.log(typeof a);
+                console.log(typeof b);
+                a = parseInt(a);
+                b = parseInt(b);
+                var sum = a + b;
+                result = "Tổng 2 số =" + sum;
+            }
+            document.querySelector('#error').innerHTML = error;
+            document.querySelector('#result').innerHTML = result;
+            event.preventDefault()
+        })
+        var obj_add = document.querySelector('#sub');
+        obj_add.addEventListener('click', function(){
+            var error = '';
+            var result = '';
+            var obj_a = document.querySelector('#a-soa');
+            var a = obj_a.value;
+            var obj_b = document.querySelector('#b-sob');
+            var b = obj_b.value;
+            if (a == '' || b == '' ){
+                error = 'Không được để trống dữ liệu'
+            }
+            else if (isNaN(a) == true || isNaN(b) == true){
+                error = 'Cần nhập dữ liệu là số'
+            }
+            if (error == ''){
+                switch (sub) {
+                    case '-':
+                    console.log(typeof a);
+                    console.log(typeof b);
+                    a = parseInt(a);
+                    b = parseInt(b);
+                    var sum = a - b;
+                    result = "Tổng 2 số = " + sum;
+                   
+                }
+            }
+            document.querySelector('#error').innerHTML = error;
+            document.querySelector('#result').innerHTML = result;
+            event.preventDefault()
+        })
+        calculator('-');
+        
+    </script>
+</body>
+</html>

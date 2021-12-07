@@ -1,0 +1,156 @@
+Cơ sở dữ liệu MYSQL
+1/ Cơ sở dữ liệu là gì?
+- Là kho lưu trữ dữ liệu
+- 1 Web có 2 kiểu:
++ Web tĩnh: HTML, CSS, JS -> muốn sửa thông tin -> sửa trực tiếp trong code
+Giả sử cần làm 1 website bán máy tính: 1000 sản phẩm -> code HTML CSS JS để hiển thị
+1000 sp -> ok. Tuy nhiên nếu thông tin sp có thay đổi ? Bắt buộc phải vào code để sửa
++ Web động: ngoài HTML CSS JS còn có thêm ngôn ngữ backend PHP + CSDL
+Website bán máy tính, lưu 1000 sản phẩm này vào CSDL, code để tạo các giao diện thêm, sửa, xóa,
+hiển thị sp -> dữ liệu là các sp đc lấy từ CSDL ra
+- CSDL là 1 thành phần bắt buộc phải có để dựng web động
+- Làm cách nào để tương tác đc với CSDL -> dùng câu truy vấn SQL - Structure Query Language
+- Học CSDL là học câu truy vấn SQL
+2/ CSDL MySQL:
+- Thực tế có rất nhiều CSDL khác nhau: MySQL, SQL Server, Oracle, Mongodb, SQLite ....
+- Với PHP thông dụng nhất là MySQL: free
+- Cần cài đặt CSDL MySQL: XAMPP cài sẵn r -> start Service MySQL của XAMPP, port = 3306
+- THông thường cần dùng dòng lệnh thì mới tương tác đc với CSDL -> nên cài các công cụ
+quản trị CSDL bằng đồ họa: PHPMyadmin (XAMPP cài sẵn r), Navicat, MySQL Workbench ...
+- Truy cập PHPMyadmin:
+http://localhost/phpmyadmin/
+
+3/ Thuật ngữ trong CSDL:
+- Database: cơ sở dữ liệu
+- Table: bảng, 1 database có nhiều table
+website bán hàng:
+Tạo Database: web_db
+Tạo các Table: products, categories, users .... nên viết thường, ở dạng số nhiều
+- Record / Row: bản ghi / hàng dữ liệu, là 1 mô tả cụ thể của 1 đối tượng trong bảng
+VD: table products có một bản ghi sau:
+Tên sp = laptop asus, Giá = 1000, Mô tả chi tiết = Đây là laptop asus ...
+- Field / Column: trường / cột: thuộc tính của bảng
+VD: table products có các field: name, price, description ...
+- Primary key / Khóa chính: là trường dùng để phân biệt các bản ghi với nhau
+- Foreign key / Khóa ngoại: là trường liên kết các bảng có mối quan hệ lại với nhau, là 1
+trường bình thường trong bảng này nhưng lại là khóa chính của bảng khác
+Một số mối quan hệ trong bảng:
+1 - 1: 1 category chỉ có 1 product, ngược lại 1 product chỉ thuộc 1 category
+1 - n: 1 category có nhiều product, ngược lại 1 product chỉ thuộc 1 category
+n - n: 1 category có nhiều product, ngược lại 1 product thuộc về nhiều category
+
+4 / Các truy vấn SQL cơ bản để thao tác với CSDL MySQL:
+Sử dụng PHPMyadmin làm nơi để viết truy vấn và thực thi truy vấn trực quan, sử dụng tab SQL
+của PHPMyadmin để viết truy vấn
+- Khi cài XAMPP, tạo account mặc định cho PHPMyadmin
+Username: root
+Password:
+
+
+# MySQL ko phân biệt hoa thường, nên viết hoa các từ khóa của MySQL
+
+
+# MySQL ko phân biệt hoa thường, nên viết hoa các từ khóa của MySQL
+# 1 - Tạo CSDL:
+CREATE DATABASE IF NOT EXISTS php0921e2_demo
+CHARACTER SET utf8
+COLLATE utf8_general_ci;
+# 2 - Sử dụng CSDL: muốn thao tác với bảng, bản ghi, trường bắt buộc phải đứng trong CSDL đó
+# Lệnh use chỉ có tác dụng khi thao tác với MySQL trong môi trường command line
+# Nên trên đồ họa phải click trực tiếp vào CSDL
+USE php0921e2_demo;
+# 3 - Xóa CSDL:
+DROP DATABASE IF EXISTS abc;
+# 4 - Các kiểu dữ liệu trong MySQL: number, string, date time
+# + Number: lưu giá trị là số, tập trung 2 kiểu chính:
+# TINYINT: 1 byte, giá trị từ -128 - 127
+# INT: 4 byte, ~ - 2 tỉ -> 2 tỉ
+# + String: lưu giá trị dạng chuỗi
+# VARCHAR: lưu tối đa 255 ký tự
+# TEXT : lưu tối đa ~ 65k ký tự
+# + Date time: lưu ngày giờ
+# DATETIME: lưu cả ngày và giờ theo kiểu thủ công
+# TIMESTAMP: lưu cả ngày và giờ theo kiểu tự động (tự lưu đc cả múi giờ)
+# Format khi lưu bắt buộc phải là Y-m-d H:i:s  -> Năm-tháng-ngày Giờ:phút:giây
+# 5 - Tạo bảng: categories lưu các thông tin danh mục
+# id: khóa chính
+# name: tên danh mục
+# description: chi tiết danh mục
+# created_at: ngày giờ tạo danh mục
+CREATE TABLE IF NOT EXISTS categories(
+id INT(11) AUTO_INCREMENT, # khóa chính set tự động tăng lên 1 mỗi khi có bản ghi mới đc tạo
+name VARCHAR(150) NOT NULL, # Bắt buộc phải khác rỗng thì mới tạo, nếu ko sẽ báo lỗi ko tạo đc
+description TEXT DEFAULT NULL, # cho phép rỗng khi tạo
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, # Tự động lấy thời gian hiện tại của hệ thống
+PRIMARY KEY (id) # set khóa chính cho bảng
+);
+
+# 6 - Xóa bảng:
+DROP TABLE IF EXISTS abcdef;
+# 7 - Truy vấn INSERT: thêm bản ghi vào bảng, chỉ thêm dữ liệu cho các trường ko phải tự động sinh
+INSERT INTO categories(name, description)
+VALUES('Thể thao', 'Mô tả chi tiết cho thể thao');
+
+# Thêm 2 bản ghi
+INSERT INTO categories(name, description)
+VALUES('Thế giới', 'Chi tiết thế giới'), ('Quốc tế', 'Chi tiết quốc tế');
+
+# 8 - Truy vấn SELECT: lấy dữ liệu từ bảng
+# Lấy tất trường và tất cả bản ghi
+SELECT * FROM categories;
+# Lấy trường cụ thể, lấy tất cả bản ghi
+SELECT id, name FROM categories;
+# Lấy kèm điều kiện WHERE
+SELECT * FROM categories WHERE id < 4;
+# WHERE OR
+SELECT * FROM categories WHERE id = 1 OR id = 3;
+# WHERE AND
+SELECT * FROM categories WHERE id >= 1 AND id <= 3;
+# Giới hạn số bản ghi trả về:
+SELECT * FROM categories LIMIT 5; # chỉ lấy 5 bản ghi tính từ vị trí đầu tiên
+# Giới hạn số bản ghi trả về theo vị trí
+SELECT * FROM categories LIMIT 10,5; # lấy 5 bản ghi tính từ bản ghi có vị trí thứ 10
+SELECT * FROM categories LIMIT 5 OFFSET 10;
+# 9 - Truy vấn UPDATE: luôn kèm theo điều kiện để tránh update toàn bộ bảng!
+UPDATE categories SET name = 'new name', description = 'new description' WHERE id = 1;
+# 10 - Truy vấn DELETE: luồn kèm điều kiện để tránh xóa toàn bộ bảng
+DELETE FROM categories WHERE id >= 10;
+# 11 - Từ khóa LIKE: so sánh tương đối
+SELECT * FROM categories WHERE name='nvmanh'; # so sánh tuyệt đối
+SELECT * FROM categories WHERE name LIKE '%nvmanh%'; # abcnvmanh123, nvmanh123, 123nvmanh, false: manhnv
+SELECT * FROM categories WHERE name LIKE 'nvmanh%'; # nvmanh123, nvmanhabc, false: 123nvmanh
+SELECT * FROM categories WHERE name LIKE '%nvmanh'; # abcnvmanh, 123nvmanh, false: nvmanh123
+
+#12 - Từ khóa ORDER BY: sắp xếp bản ghi trả về
+SELECT * FROM categories ORDER BY id DESC; # sắp xếp giảm dần theo id
+SELECT * FROM categories ORDER BY name ASC; # sắp xếp tăng dần theo trường name
+#13 - Từ khóa IN: thay thế điều kiện OR
+SELECT * FROM categories WHERE id = 1 OR id = 2 OR id = 3; # viết bằng OR
+SELECT * FROM categories WHERE id IN (1, 2, 3); #IN
+#14 - Từ khóa BETWEEN: thay thế cho >= AND <=
+SELECT * FROM categories WHERE id >= 1 AND id <= 5; # viết bằng AND
+SELECT * FROM categories WHERE id BETWEEN 1 AND 5;
+#15 - Hàm COUNT: đếm số bản ghi từ câu lệnh SELECT
+SELECT COUNT(id) FROM categories;
+SELECT COUNT(id) AS count_id FROM categories; # tạo 1 định danh khác để hiển thị cho dễ nhìn
+# 16 - Hàm MIN, MAX: lấy giá trị nhỏ nhất, lớn nhất theo trường
+SELECT MIN(id) AS min_id, MAX(id) AS max_id FROM categories;
+# 17 - Từ khóa GROUP BY: nhóm các giá trị theo trường cụ thể, mục đích dùng cho việc tính toán để select
+SELECT COUNT(name) AS count_name, name FROM categories
+GROUP BY name; # tìm xem mỗi tên sp xuất hiện bao nhiêu lần
+
+# 18 - Join bảng
+
+# 19 - Cách export và import CSDL bằng PHPMyadmin
+# Export CSDL ra 1 file .sql: vào CSDL cần export -> tab Export
+# Import CSDL từ 1 file .sql: Tạo CSDL trước, import file .sql vào
+
+#20 - Từ khóa DISTINCT: lấy các bản ghi duy nhất theo trường đc set là DISTINCT
+SELECT DISTINCT(name) FROM categories;
+
+
+
+
+
+
+

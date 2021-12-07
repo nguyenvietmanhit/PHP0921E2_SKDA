@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bài số 2</title>
+</head>
+<body>
+<style type="text/css">
+  .container{
+    background: green;
+    color: white;
+    display: flex;
+  }
+  .abc{
+    margin: 10px 20px;
+  }
+  .menu {
+    display: none;
+  }
+  a{
+    text-decoration: none;
+    display: block;
+    color: white;
+    background: green;
+    padding: 5px 10px;
+  }
+
+</style>
+<div class="container">
+  <div class="abc">Home </div>
+  <div class="abc">About</div>
+  <div class="abc as">Products
+    <div class="menu">
+      <a href="#">Engineering</a>
+      <a href="#">Telecom</a>
+      <a href="#">Energy</a>
+      <a href="#">Finance</a>
+      <a href="#">Consultancy</a>
+    </div>
+  </div>
+  <div class="abc">Services</div>
+  <div class="abc">Contact</div>
+
+</div>
+<script type="text/javascript">
+  var obj_abc = document.querySelector('.as');
+  obj_abc.addEventListener('mouseenter', function(){
+    // Lấy đối tượng menu để set css cho hiển thị lên
+    var obj_menu = document.querySelector('.menu');
+    obj_menu.style = "display: block";
+  })
+  // Thêm cả sự kiện ngược lại với mouseenter, là sự kiện mouseleave,
+  // để khi ko hover vào sẽ ẩn menu đi
+  obj_abc.addEventListener('mouseleave', function(){
+    // Lấy đối tượng menu để set css cho hiển thị lên
+    var obj_menu = document.querySelector('.menu');
+    obj_menu.style = "display: none";
+  })
+</script>
+</body>
+</html>
