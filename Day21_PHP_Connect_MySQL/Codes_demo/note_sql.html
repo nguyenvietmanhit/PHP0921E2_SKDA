@@ -1,0 +1,52 @@
+<!--note_sql.html-->
+- Lệnh JOIN trong SQL
++ Thực tế 1 webste có rất nhiều bảng, có nhiều bảng có relation với nhau
+-> cần phải có cách nào đó để lấy dữ liệu từ các bảng liên quan -> JOIN
+-> JOIN thông qua khóa ngoại (foreign key)
++ VD: Tạo 2 bảng có mối hệ với nhau: categories - products là 1 - n
+categories: id, name
+products: id, category_id, name, price
+- category_id đóng vai trò khóa ngoại của bảng products. chú ý cách đặt tên khóa ngoại
+
+
+CREATE DATABASE IF NOT EXISTS join_test
+CHARACTER SET utf8
+COLLATE utf8_general_ci;
+
+
+# Tạo bảng categories trước: id, name, description
+CREATE TABLE IF NOT EXISTS categories(
+id INT(11) AUTO_INCREMENT,
+name VARCHAR(200) NOT NULL,
+description TEXT DEFAULT NULL,
+PRIMARY KEY (id)
+);
+# Tạo bảng products: id, category_id, name, price, description
+CREATE TABLE IF NOT EXISTS products(
+id INT(11) AUTO_INCREMENT,
+category_id INT(11) DEFAULT NULL,
+name VARCHAR(255) NOT NULL,
+price INT(11) DEFAULT 0,
+description TEXT DEFAULT NULL,
+PRIMARY KEY (id), #khóa chính
+FOREIGN KEY (category_id) REFERENCES categories(id) # khóa ngoại tham chiếu đến bảng nào và trường nào
+# khai báo tường minh khóa ngoại giúp dữ liệu của các bảng liên quan có mối quan hệ chặt chẽ với nhau
+);
+
+
+# Cơ chế JOIN để lấy data từ nhiều bảng, có 3 kiểu chính. Chú ý khi join, do đang làm việc
+# với nhiều bảng, cần thêm tên bảng trước tên trường tương ứng
+# Bảng gốc là bảng FROM
+# + INNER JOIN: thông dụng nhất: INNER là kiểu lấy dữ liệu đảm bảo chặt chẽ nhất, cả 2 bảng phải có dữ liệu thì mới lấy
+SELECT products.*, categories.* FROM products
+INNER JOIN categories ON products.category_id = categories.id;
+
+SELECT products.name AS product_name, categories.name AS category_name FROM products
+INNER JOIN categories ON products.category_id = categories.id;
+
+# + LEFT JOIN: có thể gặp: có thể trả về dữ liệu ko có ý nghĩa nếu nó ko tìm thấy ở bảng đc join
+SELECT products.*, categories.* FROM products
+LEFT JOIN categories ON products.category_id = categories.id;
+# + RIGHT JOIN: hiếm khi dùng
+SELECT products.*, categories.* FROM products
+RIGHT JOIN categories ON products.category_id = categories.id;
