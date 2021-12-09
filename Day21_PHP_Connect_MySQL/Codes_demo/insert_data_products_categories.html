@@ -1,0 +1,18 @@
+# Insert data to categories table
+INSERT INTO categories (name, description) VALUES
+('Tivi ', 'Mô tả cho tivi'),
+('Tủ lạnh', 'Mô tả cho tủ lạnh'),
+('Điều hòa', 'Mô tả cho điều hòa'),
+('Máy tính', 'Mô tả cho máy tính');
+
+
+# Insert data to products table
+INSERT INTO products (category_id, name, price, description) VALUES
+(4, 'Laptop Asus', 1000, 'Mô tả Laptop Asus'),
+(4, 'Laptop Dell', 2000, 'Mô tả Laptop Dell'),
+(4, 'Laptop Toshiba ', 3000, 'Mô tả Laptop Toshiba '),
+(1, 'Tivi Samsung', 4000, 'Mô tả Tivi Samsung'),
+(1, 'Tivi Sony', 5000, 'Mô tả Tivi Sony'),
+(2, 'Tủ lạnh Sharp', 7000, 'Mô tả Tủ lạnh Sharp'),
+(2, 'Tủ lạnh Panasonic', 8000, 'Mô tả Tủ lạnh Panasonic'),
+(NULL, 'Name null', 10000, 'Description null');
