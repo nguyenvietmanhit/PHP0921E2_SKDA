@@ -1,4 +1,6 @@
 <?php
+session_start();
+require_once 'connection.php';
 // crud_demo/create.php
 // - XỬ LÝ FORM
 // + Tạo biến chứa lỗi
@@ -24,6 +26,22 @@ if (isset($_GET['submit'])) {
   // + Xử lý logic lưu vào CSDL chỉ khi ko có lỗi xảy ra
   if (empty($error)) {
     // Kết nối CSDL, thực hiện insert ...
+    // + Sử dụng biến kết nối $connection từ file connection.php
+    // + Thực hiện các bước để insert
+    // Viết câu truy vấn: id, name, price, description, created_at trong products
+    $sql_insert = "INSERT INTO products(name, price, description) VALUES('$name', $price, '$description')";
+    // Thực thi truy vấn vừa tạo -> return boolean
+    $is_insert = mysqli_query($connection, $sql_insert);
+    if ($is_insert) {
+        // Chuyển hướng về trang danh sách kèm 1 thông báo thêm thành công
+        $_SESSION['success'] = "Thêm mới sản phẩm thành công";
+        header("Location: index.php");
+        exit();
+    } else {
+        $error = "Insert thất bại";
+    }
+
+
   }
 
 }
