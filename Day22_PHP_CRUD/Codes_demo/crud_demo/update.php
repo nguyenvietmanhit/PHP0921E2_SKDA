@@ -64,6 +64,7 @@ if (isset($_GET['submit'])) {
   }
 
 }
+// Bảng users: id, username, password
 
 ?>
 <h3 style="color: red"><?php echo $error; ?></h3>
