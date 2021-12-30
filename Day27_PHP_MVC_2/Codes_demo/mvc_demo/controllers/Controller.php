@@ -4,6 +4,9 @@
 
 class Controller {
 
+  // Lưu thông tin lỗi
+  public $error;
+
   // Tiêu đề trang của các chức năng
   public $page_title;
 

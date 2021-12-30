@@ -1,5 +1,7 @@
 <!--views/products/create.php-->
 
+
+
 <h2>Form thêm mới sản phẩm</h2>
 
 <form method="post" action="">

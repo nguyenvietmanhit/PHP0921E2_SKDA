@@ -23,6 +23,21 @@
     </div>
 
     <div class="main">
+
+        <?php
+        // Hiển thị session flash -> xóa sau khi hiển thị
+        if (isset($_SESSION['success'])) {
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
+        }
+        if (isset($_SESSION['error'])) {
+          echo $_SESSION['error'];
+          unset($_SESSION['error']);
+        }
+        ?>
+
+        <h3 style="color: red"><?php echo $this->error; ?></h3>
+
         <?php echo $this->content; ?>
     </div>
 
