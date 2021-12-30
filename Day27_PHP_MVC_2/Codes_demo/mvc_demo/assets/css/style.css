@@ -1,0 +1,13 @@
+/*assets/css/style.css*/
+
+.header {
+    background: yellow;
+}
+
+.main {
+    border: 1px solid red;
+}
+
+.footer {
+    background: blue;
+}
