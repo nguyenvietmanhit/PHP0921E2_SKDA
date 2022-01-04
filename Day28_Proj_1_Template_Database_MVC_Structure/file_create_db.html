@@ -16,7 +16,7 @@ PRIMARY KEY (id)
 CREATE TABLE IF NOT EXISTS products(
 id INT(11) AUTO_INCREMENT,
 category_id INT(11) COMMENT "Id của danh mục mà sản phẩm thuộc về, là khóa ngoại liên kết với bảng categories",
-title VARCHAR(255) COMMENT "Tên sản phẩm",
+name VARCHAR(255) COMMENT "Tên sản phẩm",
 avatar VARCHAR(255) COMMENT "Tên file ảnh sản phẩm",
 price INT(11) COMMENT "Giá sản phẩm",
 amount INT(11) COMMENT "Số lượng sản phẩm trong kho",
@@ -36,7 +36,7 @@ FOREIGN KEY (category_id) REFERENCES categories(id)
 CREATE TABLE IF NOT EXISTS news(
 id INT(11) AUTO_INCREMENT,
 category_id INT(11) COMMENT "Id của danh mục mà tin tức thuộc về, là khóa ngoại liên kết với bảng categories",
-title VARCHAR(255) NOT NULL COMMENT "Tiêu đề tin tức",
+name VARCHAR(255) NOT NULL COMMENT "Tiêu đề tin tức",
 summary VARCHAR(255) COMMENT "Mô tả ngắn cho tin tức",
 avatar VARCHAR(255) COMMENT "Tên file ảnh tin tức",
 content TEXT COMMENT "Mô tả chi tiết cho sản phẩm",

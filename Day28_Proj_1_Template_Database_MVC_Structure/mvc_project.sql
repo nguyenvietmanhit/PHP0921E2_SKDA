@@ -47,7 +47,7 @@ CREATE TABLE `categories` (
 CREATE TABLE `news` (
   `id` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL COMMENT 'Id của danh mục mà tin tức thuộc về, là khóa ngoại liên kết với bảng categories',
-  `title` varchar(255) NOT NULL COMMENT 'Tiêu đề tin tức',
+  `name` varchar(255) NOT NULL COMMENT 'Tiêu đề tin tức',
   `summary` varchar(255) DEFAULT NULL COMMENT 'Mô tả ngắn cho tin tức',
   `avatar` varchar(255) DEFAULT NULL COMMENT 'Tên file ảnh tin tức',
   `content` text DEFAULT NULL COMMENT 'Mô tả chi tiết cho sản phẩm',
@@ -101,7 +101,7 @@ CREATE TABLE `order_details` (
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `category_id` int(11) DEFAULT NULL COMMENT 'Id của danh mục mà sản phẩm thuộc về, là khóa ngoại liên kết với bảng categories',
-  `title` varchar(255) DEFAULT NULL COMMENT 'Tên sản phẩm',
+  `name` varchar(255) DEFAULT NULL COMMENT 'Tên sản phẩm',
   `avatar` varchar(255) DEFAULT NULL COMMENT 'Tên file ảnh sản phẩm',
   `price` int(11) DEFAULT NULL COMMENT 'Giá sản phẩm',
   `amount` int(11) DEFAULT NULL COMMENT 'Số lượng sản phẩm trong kho',
