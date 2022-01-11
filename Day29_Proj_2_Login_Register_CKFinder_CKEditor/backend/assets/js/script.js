@@ -17,6 +17,7 @@ $(document).ready(function () {
         readURL(this);
     });
 
+  // Tích hợp CKEditor vào name của textarea, CKEditor chỉ áp dụng đc với textarea
   CKEDITOR.replace('description', {
     //đường dẫn đến file ckfinder.html của ckfinder
     filebrowserBrowseUrl: 'assets/ckfinder/ckfinder.html',

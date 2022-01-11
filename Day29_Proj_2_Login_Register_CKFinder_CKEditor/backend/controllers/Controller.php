@@ -16,7 +16,19 @@ class Controller
     // Tiêu đề trang
     public $page_title;
 
-    /**
+
+    public function __construct() {
+      // Nếu user chưa đăng nhập thì ko cho phép truy cập vào các chức năng mà
+      // đăng nhập rồi mới truy cập đc
+      $controller = $_GET['controller'];
+      if (!isset($_SESSION['user']) && $controller != 'user') {
+        $_SESSION['error'] = "Bạn chưa đăng nhập";
+        header("Location: index.php?controller=user&action=login");
+        exit();
+      }
+    }
+
+  /**
      * @param $file string Đường dẫn tới file
      * @param array $variables array Danh sách các biến truyền vào file
      * @return false|string
