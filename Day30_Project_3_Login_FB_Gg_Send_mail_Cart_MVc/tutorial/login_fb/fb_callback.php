@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once __DIR__ . '/vendor/autoload.php'; // change path as needed
+require_once __DIR__ . '/../vendor/autoload.php'; // change path as needed
 $fb = new Facebook\Facebook([
-    'app_id' => 'APP_ID',
-    'app_secret' => 'APP_SECRET',
+    'app_id' => '645452333574862',
+    'app_secret' => 'abdbc1f61ea42366625f3969b2a7b780',
     'default_graph_version' => 'v2.10',
 ]);
 
@@ -14,8 +14,12 @@ try {
 
     $response = $fb->get('/me?fields=id,first_name,last_name,email,gender,locale,picture', $accessToken);
 
-    var_dump($response);
-    var_dump($response->getGraphUser());
+//    var_dump($response);
+    echo "<pre>" . __LINE__ . " " . __FILE__ . "<br />";
+    print_r($response->getGraphUser());
+    echo "</pre>";
+//    die;
+//    var_dump();
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
     // When Graph returns an error
     echo 'Graph returned an error: ' . $e->getMessage();
@@ -46,7 +50,10 @@ if (! isset($accessToken)) {
 
 // Logged in
 echo '<h3>Access Token</h3>';
-var_dump($accessToken->getValue());
+//echo "<pre>" . __LINE__ . " " . __FILE__ . "<br />";
+//print_r(($accessToken->getValue()));
+//echo "</pre>";
+
 
 // The OAuth 2.0 client handler helps us manage access tokens
 $oAuth2Client = $fb->getOAuth2Client();

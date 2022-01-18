@@ -1,10 +1,10 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 // init configuration
-$clientID = '271367576688-qk5h7p8es7pt3neanjgk3ng3sa89ujpt.apps.googleusercontent.com';
-$clientSecret = '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';
-$redirectUri = 'http://localhost/docker/login_fb_gg/gg-callback.php';
+$clientID = '585454199164-lg5usp2ug49qg0t4l74th7h7daekdiap.apps.googleusercontent.com';
+$clientSecret = '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';
+$redirectUri = 'http://localhost/PHP0921E2_SKDA/Day30_Project_3_Login_FB_Gg_Send_mail_Cart_MVc/tutorial/login_gg/login.php';
 
 // create Client Request to access Google API
 $client = new Google_Client();
