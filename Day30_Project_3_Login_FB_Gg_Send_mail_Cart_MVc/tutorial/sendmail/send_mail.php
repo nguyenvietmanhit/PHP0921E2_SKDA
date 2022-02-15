@@ -48,3 +48,8 @@ try {
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
+
+$result .= "Checkbox: ";
+foreach ($checkbox AS $cb) {
+  $result .= $cb . ", ";
+}
