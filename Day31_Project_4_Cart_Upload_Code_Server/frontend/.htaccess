@@ -1,0 +1,7 @@
+#.htaccess, luôn cùng cấp với file index.php gốc của MVC
+# Có thể cấu hình truy cập trang, tạo đường dẫn thân thiện
+# File nhạy cảm, các file ko có tên -> file nhạy cảm -> ẩn trên window
+# sửa rất cẩn thận -> ko thể truy cập đc mvc
+RewriteEngine On
+
+RewriteRule gio-hang-cua-ban.html index.php?controller=cart&action=index
